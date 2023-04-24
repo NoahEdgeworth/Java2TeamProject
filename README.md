@@ -1,2 +1,2 @@
-# Java2TeamProject
+# STEM Career Planner
 Team project repo 
