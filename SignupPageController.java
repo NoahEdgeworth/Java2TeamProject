@@ -87,7 +87,7 @@ public class SignupPageController {
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
             statement.executeUpdate(String.format("insert into Users values('%s', '%s', '%s')",
-            nameField.getText(), passwordField.getText(), emailField.getText()));
+            nameField.getText(), emailField.getText(), passwordField.getText()));
          }
          catch(SQLException e){
             System.out.printf("SQL ERROR: %s", e.getMessage());
@@ -144,7 +144,7 @@ public class SignupPageController {
       try(Connection connection = DriverManager.getConnection("jdbc:sqlite:ProjectCode/project.db")){
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
-            String myQuery = String.format("select email from Users where email like '%s'", emailField.getText());
+            String myQuery = String.format("select Email from Users where Email like '%s'", emailField.getText());
             ResultSet rs = statement.executeQuery(myQuery);
             while(rs.next()){
                String email = rs.getString(1);
