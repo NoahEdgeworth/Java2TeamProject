@@ -12,6 +12,11 @@ import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 import javafx.scene.Node;
 import javafx.scene.control.ToggleGroup;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 
 public class StemFuturePageController
 {
@@ -96,28 +101,40 @@ public class StemFuturePageController
       window.show(); 
    }
    
-   @FXML
-   void handleS5(ActionEvent event) 
-   {
-      selections[4] = 1;
-   }
-   
-   @FXML
-   void handleT5(ActionEvent event) 
-   {
-      selections[4] = 2;
-   }
-   
-   @FXML
-   void handleE5(ActionEvent event) 
-   {
-      selections[4] = 3;
-   }
+@FXML
+void handleS5(ActionEvent event) {
+    selections[4] = 1;
+    saveFutureToDatabase("S5");
+}
 
-   @FXML
-   void handleM5(ActionEvent event) 
-   {
-      selections[4] = 4;
-   }
+@FXML
+void handleT5(ActionEvent event) {
+    selections[4] = 2;
+    saveFutureToDatabase("T5");
+}
 
+@FXML
+void handleE5(ActionEvent event) {
+    selections[4] = 3;
+    saveFutureToDatabase("E5");
+}
+
+@FXML
+void handleM5(ActionEvent event) {
+    selections[4] = 4;
+    saveFutureToDatabase("M5");
+}
+
+private void saveFutureToDatabase(String future) {
+    String url = "jdbc:sqlite:ProjectCode/project.db";
+    String sql = "INSERT INTO Users (Future) VALUES (?)";
+
+    try (Connection conn = DriverManager.getConnection(url);
+         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        pstmt.setString(1, future);
+        pstmt.executeUpdate();
+    } catch (SQLException e) {
+        System.out.println(e.getMessage());
+    }
+}
 }

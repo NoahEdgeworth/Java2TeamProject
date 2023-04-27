@@ -12,6 +12,11 @@ import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 import javafx.scene.Node;
 import javafx.scene.control.ToggleGroup;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 
 public class StemImpactPageController
 {
@@ -88,29 +93,42 @@ public class StemImpactPageController
       window.setScene(scene);
       window.show();
    }
-   
    @FXML
-   void handleS4(ActionEvent event) 
-   {
-      selections[3] = 1;
-   }
-   
-   @FXML
-   void handleT4(ActionEvent event) 
-   {
-      selections[3] = 2;
-   }
-   
-   @FXML
-   void handleE4(ActionEvent event) 
-   {
-      selections[3] = 3;
-   }
-
-   @FXML
-   void handleM4(ActionEvent event) 
-   {
-      selections[3] = 4;
-   }
-
+void handleS4(ActionEvent event) {
+    selections[3] = 1;
+    saveImpactToDatabase("S4");
 }
+
+@FXML
+void handleT4(ActionEvent event) {
+    selections[3] = 2;
+    saveImpactToDatabase("T4");
+}
+
+@FXML
+void handleE4(ActionEvent event) {
+    selections[3] = 3;
+    saveImpactToDatabase("E4");
+}
+
+@FXML
+void handleM4(ActionEvent event) {
+    selections[3] = 4;
+    saveImpactToDatabase("M4");
+}
+
+private void saveImpactToDatabase(String impact) {
+    String url = "jdbc:sqlite:ProjectCode/project.db";
+    String sql = "INSERT INTO Users (Impact) VALUES (?)";
+
+    try (Connection conn = DriverManager.getConnection(url);
+         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        pstmt.setString(1, impact);
+        pstmt.executeUpdate();
+    } catch (SQLException e) {
+        System.out.println(e.getMessage());
+    }
+}
+}
+
+   

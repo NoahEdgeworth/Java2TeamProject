@@ -12,6 +12,11 @@ import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 import javafx.scene.Node;
 import javafx.scene.control.ToggleGroup;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 
 public class StemCoursePageController
 {
@@ -88,28 +93,40 @@ public class StemCoursePageController
       window.show();
    }
    
-   @FXML
-   void handleS3(ActionEvent event) 
-   {
-      selections[2] = 1;
-   }
-   
-   @FXML
-   void handleT3(ActionEvent event) 
-   {
-      selections[2] = 2;
-   }
-   
-   @FXML
-   void handleE3(ActionEvent event) 
-   {
-      selections[2] = 3;
-   }
+@FXML
+void handleS3(ActionEvent event) {
+    selections[2] = 1;
+    saveCourseToDatabase("S3");
+}
 
-   @FXML
-   void handleM3(ActionEvent event) 
-   {
-      selections[2] = 4;
-   }
+@FXML
+void handleT3(ActionEvent event) {
+    selections[2] = 2;
+    saveCourseToDatabase("T3");
+}
 
+@FXML
+void handleE3(ActionEvent event) {
+    selections[2] = 3;
+    saveCourseToDatabase("E3");
+}
+
+@FXML
+void handleM3(ActionEvent event) {
+    selections[2] = 4;
+    saveCourseToDatabase("M3");
+}
+
+private void saveCourseToDatabase(String course) {
+    String url = "jdbc:sqlite:ProjectCode/project.db";
+    String sql = "INSERT INTO Users (Course) VALUES (?)";
+
+    try (Connection conn = DriverManager.getConnection(url);
+         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        pstmt.setString(1, course);
+        pstmt.executeUpdate();
+    } catch (SQLException e) {
+        System.out.println(e.getMessage());
+    }
+}
 }

@@ -12,6 +12,10 @@ import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 import javafx.scene.Node;
 import javafx.scene.control.ToggleGroup;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class StemHobbiesPageController
 {
@@ -91,42 +95,67 @@ public class StemHobbiesPageController
       window.show();
    }
 
-   @FXML
-   void handleS1(ActionEvent event) 
-   {
-      if (S1.isSelected())
-      {
-         selections[0] = 1;
-      }
-   }
+ @FXML
+void handleS1(ActionEvent event) {
+    if (S1.isSelected()) {
+        selections[0] = 1;
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:ProjectCode/project.db");
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Users (Hobbies) VALUES (?)");
+            stmt.setString(1, "S1");
+            stmt.executeUpdate();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
 
-   @FXML
-   void handleT1(ActionEvent event) 
-   {
-      if (T1.isSelected())
-      {
-         selections[0] = 2;
-      }
-   }
-   
-   @FXML
-   void handleE1(ActionEvent event) 
-   {
-      if (E1.isSelected())
-      {
-         selections[0] = 3;
-      }
-   }
-   
-   @FXML
-   void handleM1(ActionEvent event) 
-   {
-      if (M1.isSelected())
-      {
-         selections[0] = 4;
-      }
-   }
-   
+@FXML
+void handleT1(ActionEvent event) {
+    if (T1.isSelected()) {
+        selections[0] = 2;
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:ProjectCode/project.db");
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Users (Hobbies) VALUES (?)");
+            stmt.setString(1, "T1");
+            stmt.executeUpdate();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
 
+@FXML
+void handleE1(ActionEvent event) {
+    if (E1.isSelected()) {
+        selections[0] = 3;
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:ProjectCode/project.db");
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Users (Hobbies) VALUES (?)");
+            stmt.setString(1, "E1");
+            stmt.executeUpdate();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
 
+@FXML
+void handleM1(ActionEvent event) {
+    if (M1.isSelected()) {
+        selections[0] = 4;
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:ProjectCode/project.db");
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Users (Hobbies) VALUES (?)");
+            stmt.setString(1, "M1");
+            stmt.executeUpdate();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
 }
