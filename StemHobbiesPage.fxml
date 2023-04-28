@@ -3,10 +3,11 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ProjectCode.StemHobbiesPageController">
    <children>
       <Label layoutX="150.0" layoutY="60.0" prefHeight="30.0" prefWidth="300.0" text="What are your hobbies/interests?">
          <font>
@@ -16,9 +17,12 @@
       <Button fx:id="nextButton" layoutX="433.0" layoutY="324.0" mnemonicParsing="false" onAction="#handleNextButton" text="Next -&gt;" />
       <Button fx:id="backButton" layoutX="77.0" layoutY="324.0" mnemonicParsing="false" onAction="#handleBackButton" text="&lt;- Back" />
       <Button fx:id="restartButton" layoutX="274.0" layoutY="324.0" mnemonicParsing="false" onAction="#handleRestartButton" text="Restart" />
-      <RadioButton fx:id="S1" layoutX="75.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleS1" text="Outdoor hobbies (Hiking, camping, etc.)" />
-      <RadioButton fx:id="T1" layoutX="77.0" layoutY="169.0" mnemonicParsing="false" onAction="#handleT1" text="Technology-related hobbies (Computer Programming, Video Games, etc.)" />
-      <RadioButton fx:id="E1" layoutX="77.0" layoutY="216.0" mnemonicParsing="false" onAction="#handleE1" text="Building hobbies (working on cars, robotics, etc.)" />
-      <RadioButton fx:id="M1" layoutX="77.0" layoutY="267.0" mnemonicParsing="false" onAction="#handleM1" text="Puzzle solving/critical thinking hobbies." />
+      <RadioButton fx:id="S1" layoutX="75.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleS1" text="Outdoor hobbies (Hiking, camping, etc.)">
+         <toggleGroup>
+            <ToggleGroup fx:id="toggleGroup" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="T1" layoutX="77.0" layoutY="169.0" mnemonicParsing="false" onAction="#handleT1" text="Technology-related hobbies (Computer Programming, Video Games, etc.)" toggleGroup="$toggleGroup" />
+      <RadioButton fx:id="E1" layoutX="77.0" layoutY="216.0" mnemonicParsing="false" onAction="#handleE1" text="Building hobbies (working on cars, robotics, etc.)" toggleGroup="$toggleGroup" />
+      <RadioButton fx:id="M1" layoutX="77.0" layoutY="267.0" mnemonicParsing="false" onAction="#handleM1" text="Puzzle solving/critical thinking hobbies." toggleGroup="$toggleGroup" />
    </children>
 </AnchorPane>
