@@ -8,6 +8,8 @@ import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 
 public class ProjectCodeMain extends Application{
+
+   
    public void start(Stage stage) throws IOException{
       Parent root = FXMLLoader.load(getClass().getResource("LoginPageFXML.fxml"));
       Scene scene = new Scene(root, 600, 400);
@@ -15,6 +17,7 @@ public class ProjectCodeMain extends Application{
       stage.setTitle("ProjectCode");
       stage.show();
    }
+   
    public static void main(String[] args){
       launch(args);
    }

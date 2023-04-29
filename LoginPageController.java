@@ -30,16 +30,17 @@ public class LoginPageController {
 
     @FXML
     private TextField usernameField;
-
-    static GrabUsername gu = new GrabUsername();
     
     @FXML
     void loginHandler(ActionEvent event)throws IOException {
       if(loginCheck() == true){
-         Parent parent = FXMLLoader.load(getClass().getResource("/ProjectCode/StemStartPage.fxml"));
+         String username = usernameField.getText();
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ProjectCode/StemStartPage.fxml"));
+         Parent parent = loader.load();
+         StemStartPageController sspc = loader.getController();
+         sspc.setUsername(username);
          Scene scene = new Scene(parent, 600, 400);
          Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-      
          stage.setScene(scene);
          stage.show();
       }
