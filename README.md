@@ -7,3 +7,5 @@ Our application allows the user to select a STEM career path. Every part of the 
 * Choose your major that you are currently in at your institution 
 * based on the choices provided by the user career results may vary
 * background knowledge on how to get started with the career today!
+* [![JQuery][JQuery.com]][JQuery-url]
+* 
