@@ -3,10 +3,11 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ProjectCode.StemCoursePageController">
    <children>
       <Label layoutX="8.0" layoutY="72.0" text="Which courses in high school and/or college interested you the most?">
          <font>
@@ -16,9 +17,12 @@
       <Button fx:id="nextButton3" layoutX="443.0" layoutY="334.0" mnemonicParsing="false" onAction="#handleNextButton3" text="Next -&gt;" />
       <Button fx:id="backButton3" layoutX="87.0" layoutY="334.0" mnemonicParsing="false" onAction="#handleBackButton3" text="&lt;- Back" />
       <Button fx:id="restartButton" layoutX="274.0" layoutY="334.0" mnemonicParsing="false" onAction="#handleRestartButton" text="Restart" />
-      <RadioButton fx:id="S3" layoutX="22.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleS3" text="Anything related to the study of the earth, animals, plants, and/or the enviornment.  " />
-      <RadioButton fx:id="T3" layoutX="21.0" layoutY="172.0" mnemonicParsing="false" onAction="#handleT3" text="Anything related to technology (including hardware, software, troubleshooting, and/or cybersecurity)." />
-      <RadioButton fx:id="E3" layoutX="21.0" layoutY="215.0" mnemonicParsing="false" onAction="#handleE3" text="Anything related to mechanical engineering or building." />
-      <RadioButton fx:id="M3" layoutX="21.0" layoutY="262.0" mnemonicParsing="false" onAction="#handleM3" text="Anything related to budgeting, statistics, and/or complex problem solving." />
+      <RadioButton fx:id="S3" layoutX="22.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleS3" text="Anything related to the study of the earth, animals, plants, and/or the enviornment.  ">
+         <toggleGroup>
+            <ToggleGroup fx:id="toggleGroup" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="T3" layoutX="21.0" layoutY="172.0" mnemonicParsing="false" onAction="#handleT3" text="Anything related to technology (including hardware, software, troubleshooting, and/or cybersecurity)." toggleGroup="$toggleGroup" />
+      <RadioButton fx:id="E3" layoutX="21.0" layoutY="215.0" mnemonicParsing="false" onAction="#handleE3" text="Anything related to mechanical engineering or building." toggleGroup="$toggleGroup" />
+      <RadioButton fx:id="M3" layoutX="21.0" layoutY="262.0" mnemonicParsing="false" onAction="#handleM3" text="Anything related to budgeting, statistics, and/or complex problem solving." toggleGroup="$toggleGroup" />
    </children>
 </AnchorPane>
