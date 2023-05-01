@@ -10,4 +10,8 @@ Our application is a tool for the user to explore different careers in technolog
 * 
 * View results based on interest
 
-##Executing program
+## Executing program
+*
+*
+*
+*
