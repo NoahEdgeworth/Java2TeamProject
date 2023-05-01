@@ -16,3 +16,6 @@ Our application is a tool for the user to explore different careers in technolog
 * Click to select answers to a series of questions that best suit your interest
 * Based on answer choices a career will be chosen
 * Results are displayed with a discription of the career path chosen
+
+### Contributors
+https://github.com/BrockDavis24
