@@ -18,4 +18,8 @@ Our application is a tool for the user to explore different careers in technolog
 * Results are displayed with a discription of the career path chosen
 
 ### Contributors
-https://github.com/BrockDavis24
+Brock Davis https://github.com/BrockDavis24
+Noah Edgeworth https://github.com/NoahEdgeworth
+Arend Blockley https://github.com/arendnblockley
+Tim Mason https://github.com/tmason3
+Romiro Alvarez https://github.com/ralvarezperez
