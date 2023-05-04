@@ -24,5 +24,6 @@
       <RadioButton fx:id="T1" layoutX="77.0" layoutY="169.0" mnemonicParsing="false" onAction="#handleT1" text="Technology-related hobbies (Computer Programming, Video Games, etc.)" toggleGroup="$toggleGroup" />
       <RadioButton fx:id="E1" layoutX="77.0" layoutY="216.0" mnemonicParsing="false" onAction="#handleE1" text="Building hobbies (working on cars, robotics, etc.)" toggleGroup="$toggleGroup" />
       <RadioButton fx:id="M1" layoutX="77.0" layoutY="267.0" mnemonicParsing="false" onAction="#handleM1" text="Puzzle solving/critical thinking hobbies." toggleGroup="$toggleGroup" />
+      <Label fx:id="unLabel" layoutX="259.0" layoutY="29.0" text="l" visible="false" />
    </children>
 </AnchorPane>

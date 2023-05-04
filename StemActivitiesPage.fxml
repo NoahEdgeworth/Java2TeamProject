@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ProjectCode.StemActivitiesPageController">
+   <children>
+      <Label layoutX="121.0" layoutY="75.0" text="Which activity are you more likely to do?">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="nextButton" layoutX="421.0" layoutY="334.0" mnemonicParsing="false" onAction="#handleNextButton" text="Next -&gt;" />
+      <Button fx:id="backButton" layoutX="85.0" layoutY="334.0" mnemonicParsing="false" onAction="#handleBackButton" text="&lt;- Back" />
+      <Button fx:id="restartButton" layoutX="274.0" layoutY="334.0" mnemonicParsing="false" onAction="#handleRestartButton" text="Restart" />
+      <RadioButton fx:id="S2" layoutX="96.0" layoutY="138.0" mnemonicParsing="false" onAction="#handleS2" text="Visit a zoo/aquarium.">
+         <toggleGroup>
+            <ToggleGroup fx:id="toggleGroup" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="T2" layoutX="96.0" layoutY="177.0" mnemonicParsing="false" onAction="#handleT2" text="Stay at home and play video games." toggleGroup="$toggleGroup" />
+      <RadioButton fx:id="E2" layoutX="96.0" layoutY="216.0" mnemonicParsing="false" onAction="#handleE2" text="Woodwork/Metalwork." toggleGroup="$toggleGroup" />
+      <RadioButton fx:id="M2" layoutX="96.0" layoutY="254.0" mnemonicParsing="false" onAction="#handleM2" text="Playing a game of Chess." toggleGroup="$toggleGroup" />
+      <Label fx:id="unLabel" layoutX="285.0" layoutY="36.0" visible="false" />
+   </children>
+</AnchorPane>

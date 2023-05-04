@@ -2,8 +2,7 @@ package ProjectCode;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
+import javafx.scene.control.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -12,11 +11,7 @@ import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 import javafx.scene.Node;
 import javafx.scene.control.ToggleGroup;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
+import java.sql.*;
 
 public class StemCoursePageController
 {
@@ -43,6 +38,9 @@ public class StemCoursePageController
    private Button restartButton;
    
    @FXML
+   private Label unLabel;
+   
+   @FXML
    private ToggleGroup toggleGroup;
    
    private int[] selections = new int[5];
@@ -55,78 +53,130 @@ public class StemCoursePageController
       T3.setToggleGroup(toggleGroup);
       E3.setToggleGroup(toggleGroup);
       M3.setToggleGroup(toggleGroup);
+      
    }
+   
+   public void setAnswer(){
+      try(Connection connection = DriverManager.getConnection("jdbc:sqlite:ProjectCode/project.db")){
+         Statement statement = connection.createStatement();
+         statement.setQueryTimeout(30);
+         String myQuery = String.format("select Course from Users where email = '%s'"
+            , unLabel.getText());
+         ResultSet rs = statement.executeQuery(myQuery);
+         while(rs.next()){
+            String answer = rs.getString(1);
+            System.out.println(answer);
+            if(answer == null){
+               break;
+            }
+            else if(answer.equals("S")){
+               S3.setSelected(true);
+            }
+            else if(answer.equals("T")){
+               T3.setSelected(true);
+            }
+            else if(answer.equals("E")){
+               E3.setSelected(true);
+            }
+            else if(answer.equals("M")){
+               M3.setSelected(true);
+            }
+         }
+      }
+         catch(SQLException e){
+            System.out.printf("SQL ERROR: %s", e.getMessage());
+         }
+   }   
 
    @FXML
    void handleBackButton3(ActionEvent event) throws IOException
    {
-      FXMLLoader loader = new FXMLLoader();
-      loader.setLocation(getClass().getResource("StemActivitiesPage.fxml"));
+      String username = unLabel.getText();
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/ProjectCode/StemActivitiesPage.fxml"));
       Parent parent = loader.load();
-      Scene scene = new Scene(parent);
-      Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-      window.setScene(scene);
-      window.show();
+      StemActivitiesPageController sapc = loader.getController();
+      sapc.setUsername(username);
+      sapc.setAnswer();
+      Scene scene = new Scene(parent, 600, 400);
+      Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+      stage.setScene(scene);
+      stage.show();
    }
 
    @FXML
    void handleNextButton3(ActionEvent event) throws IOException
    {
-      FXMLLoader loader = new FXMLLoader();
-      loader.setLocation(getClass().getResource("StemImpactPage.fxml"));
+      String username = unLabel.getText();
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/ProjectCode/StemImpactPage.fxml"));
       Parent parent = loader.load();
-      Scene scene = new Scene(parent);
-      Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-      window.setScene(scene);
-      window.show();
+      StemImpactPageController sipc = loader.getController();
+      sipc.setUsername(username);
+      sipc.setAnswer();
+      Scene scene = new Scene(parent, 600, 400);
+      Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+      stage.setScene(scene);
+      stage.show();
    }
    
    @FXML
    void handleRestartButton(ActionEvent event) throws IOException
    {
-      FXMLLoader loader = new FXMLLoader();
-      loader.setLocation(getClass().getResource("StemStartPage.fxml"));
+      String username = unLabel.getText();
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/ProjectCode/StemStartPage.fxml"));
       Parent parent = loader.load();
-      Scene scene = new Scene(parent);
-      Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-      window.setScene(scene);
-      window.show();
+      StemStartPageController sspc = loader.getController();
+      sspc.setUsername(username);
+      Scene scene = new Scene(parent, 600, 400);
+      Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+      stage.setScene(scene);
+      stage.show(); 
    }
    
-@FXML
-void handleS3(ActionEvent event) {
-    selections[2] = 1;
-    saveCourseToDatabase("S3");
-}
+   @FXML
+   void handleS3(ActionEvent event) 
+   {
+      //QuizController.setAnswer(2,"Study of Earth, Animals,Plants");
+      saveCourseToDatabase("S");
+   }
+   
+   @FXML
+   void handleT3(ActionEvent event) 
+   {
+      //QuizController.setAnswer(2,"Technology Related");
+      saveCourseToDatabase("T");
+   }
+   
+   @FXML
+   void handleE3(ActionEvent event) 
+   {
+      //QuizController.setAnswer(2,"Mechanical Engineering or Building");
+      saveCourseToDatabase("E");
+   }
 
-@FXML
-void handleT3(ActionEvent event) {
-    selections[2] = 2;
-    saveCourseToDatabase("T3");
-}
+   @FXML
+   void handleM3(ActionEvent event) 
+   {
+      //QuizController.setAnswer(2,"Statsitics, Problem Solving, Budgeting");
+      saveCourseToDatabase("M");
+   }
+   
+   private void saveCourseToDatabase(String course) {
+      String url = "jdbc:sqlite:ProjectCode/project.db";
+      String sql = String.format("UPDATE Users SET Course = ? WHERE email = '%s'",
+               unLabel.getText());
+      
+      try (Connection conn = DriverManager.getConnection(url);
+          PreparedStatement pstmt = conn.prepareStatement(sql)) {
+          pstmt.setString(1, course);
+          pstmt.executeUpdate();
+      } catch (SQLException e) {
+          System.out.println(e.getMessage());
+      }
+   }
 
-@FXML
-void handleE3(ActionEvent event) {
-    selections[2] = 3;
-    saveCourseToDatabase("E3");
-}
+   public void setUsername(String username){
+      unLabel.setText(username);
+      System.out.println(username);
+   }
 
-@FXML
-void handleM3(ActionEvent event) {
-    selections[2] = 4;
-    saveCourseToDatabase("M3");
-}
-
-private void saveCourseToDatabase(String course) {
-    String url = "jdbc:sqlite:ProjectCode/project.db";
-    String sql = "INSERT INTO Users (Course) VALUES (?)";
-
-    try (Connection conn = DriverManager.getConnection(url);
-         PreparedStatement pstmt = conn.prepareStatement(sql)) {
-        pstmt.setString(1, course);
-        pstmt.executeUpdate();
-    } catch (SQLException e) {
-        System.out.println(e.getMessage());
-    }
-}
 }
