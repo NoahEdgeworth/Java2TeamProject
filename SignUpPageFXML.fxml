@@ -9,7 +9,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ProjectCode.SignupPageController">
    <children>
-      <Label layoutX="241.0" layoutY="69.0" text="PlaceHolder">
+      <Label layoutX="233.0" layoutY="71.0" text="Sign Up Now!">
          <font>
             <Font size="23.0" />
          </font>

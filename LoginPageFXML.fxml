@@ -15,7 +15,7 @@
       <Label layoutX="173.0" layoutY="192.0" text="Password" />
       <TextField fx:id="usernameField" layoutX="233.0" layoutY="125.0" onAction="#usernameHandler" />
       <PasswordField fx:id="passwordField" layoutX="233.0" layoutY="188.0" onAction="#passwordHandler" />
-      <Label layoutX="241.0" layoutY="61.0" text="PlaceHolder">
+      <Label layoutX="216.0" layoutY="61.0" text="CareerPlanner">
          <font>
             <Font name="System Bold" size="28.0" />
          </font>
